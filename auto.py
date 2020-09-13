@@ -1,11 +1,27 @@
-import mechanize
+import os, requests, getpass
 
-br = mechanize.Browser()
-br.set_handler_robots(False)
-br.addheaders = [('User-agent','Firefox')]
-br.open("https://www.facebook.com/login.php")
-br.select_form(nr=0)
-br.from['email'] = 'femasakbar79'
-br.from['pass'] = 'femasgans'
-sub = br.submit()
-print sub.geturl()
+os.system('clear')
+print ("========================")
+id = raw_input("Email : ")
+pw = getpass.getpass(promt="Password : ")
+print ("Checking Login...")
+
+url = 'https://mobile.facebook.com/login.php'
+headers = {
+'User-Agent' : 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0',
+'Accept-Laguage' : 'en-US,en;q=0.5'
+}
+
+data = {
+'email' : id,
+'pass' : pw
+}
+
+requests = requests.post(url, headers=headers, data=data).text
+
+if "xc_message" in requests:
+    print ("Berhasil login")
+elif "checkpointSubmitButton" in requests:
+    print ("Checkpoint")
+else:
+    print ("Login gagal")
