@@ -1,8 +1,4 @@
 echo "========================================"
 echo "Update Script :"
 echo "========================================"
-cd ..
-git clone https://github.com/lynxku/fbpy
-echo "[*] Done!"
-cd fbpy
-exit
+git clone --depth=1 https://github.com/lynxku/fbpy
