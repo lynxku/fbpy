@@ -3,4 +3,5 @@ import bs4
 
 res = requests.get('https://learncodeonline.in')
 type(res)
-res.text
+output = res.text
+print(output)
